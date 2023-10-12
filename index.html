@@ -16,7 +16,7 @@
     <h1>LHS Math Score Converter</h1>
     <div class="container">
         <label for="inputScore">Enter your score (9-point scale):</label>
-        <input type="text" id="inputScore" placeholder="Enter score" oninput="convertScore()">
+        <input type="number" id="inputScore" placeholder="Enter score" oninput="convertScore()">
     </div>
     <div class="container">
         <p>Converted score (100-point scale): <span id="convertedScore">--</span></p>
@@ -24,8 +24,18 @@
     <script>
         function convertScore() {
             const inputScore = parseFloat(document.getElementById("inputScore").value);
-            const convertedScore = 0.00648964 * Math.pow(inputScore, 3) + 0.0637691 * Math.pow(inputScore, 2) + 2.79719 * inputScore + 64.9339;
-            document.getElementById("convertedScore").textContent = isNaN(convertedScore) ? "--" : convertedScore.toFixed(2);
+            
+            if (inputScore <= 0) {
+                document.getElementById("convertedScore").textContent = "60.00";
+            } else if (inputScore >= 9) {
+                document.getElementById("convertedScore").textContent = "100.00";
+            } else {
+                let convertedScore = 0.015559 * Math.pow(inputScore, 3) - 0.159034 * Math.pow(inputScore, 2) + 4.61668 * inputScore + 60;
+                
+                convertedScore = Math.min(100, Math.max(0, convertedScore));
+
+                document.getElementById("convertedScore").textContent = convertedScore.toFixed(2);
+            }
         }
     </script>
 </body>
