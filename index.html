@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Score Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>LHS Math Score Converter</h1>
+    <div class="container">
+        <label for="inputScore">Enter your score (9-point scale):</label>
+        <input type="text" id="inputScore" placeholder="Enter score" oninput="convertScore()">
+    </div>
+    <div class="container">
+        <p>Converted score (100-point scale): <span id="convertedScore">--</span></p>
+    </div>
+    <script>
+        function convertScore() {
+            const inputScore = parseFloat(document.getElementById("inputScore").value);
+            const convertedScore = 0.00648964 * Math.pow(inputScore, 3) + 0.0637691 * Math.pow(inputScore, 2) + 2.79719 * inputScore + 64.9339;
+            document.getElementById("convertedScore").textContent = isNaN(convertedScore) ? "--" : convertedScore.toFixed(2);
+        }
+    </script>
+</body>
+</html>
