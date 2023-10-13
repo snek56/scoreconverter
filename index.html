@@ -30,7 +30,7 @@
             } else if (inputScore >= 9) {
                 document.getElementById("convertedScore").textContent = "100.00";
             } else {
-                let convertedScore = 0.015559 * Math.pow(inputScore, 3) - 0.159034 * Math.pow(inputScore, 2) + 4.61668 * inputScore + 60;
+                let convertedScore = 0.000892691 * Math.pow(inputScore, 4)-0.000714091 * Math.pow(inputScore, 3) -0.145062 * Math.pow(inputScore, 2)+5.71381 * inputScore + 55;
                 
                 convertedScore = Math.min(100, Math.max(0, convertedScore));
 
